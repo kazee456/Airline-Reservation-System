@@ -11,10 +11,10 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 	<html>
 
 	<head>
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 		<title>Welcome3</title>
 		<style>
@@ -142,9 +142,12 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 							}
 							mysqli_free_result($result);
 						}
+
 						?>
 						<div class="mb-3">
 							<input type="submit" value="Cancel Flight" class="bg-info py-1 px-2 mb-0" name="cancel" onclick="return confirm('Are you sure you want to cancel the flight?');" />
+							<!-- <input type="submit" value="Receipt" class="bg-info py-1 px-2 mb-0" name="receipt" /> -->
+							<button type="button" class="btn btn-info"><a href="receipt.php" style="color:black">Receipt</a></button>
 						</div>
 					<?php
 					if (isset($_POST["cancel"])) {
@@ -155,7 +158,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 						if (mysqli_query($con, $sql)) {
 							echo "<script>alert('Successfully Canceled');</script>";
 							$_SESSION['sess_user'] = $user;
-							header("Location: page1.php");
+							echo "<script>window.open('page1.php','_self')</script>";
 							exit();
 						} else {
 							echo "Error: " . $sql . "<br>" . mysqli_error($con);
@@ -163,6 +166,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 					}
 				}
 					?>
+
 					</center>
 				</fieldset>
 			</legend>

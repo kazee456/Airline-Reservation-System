@@ -15,6 +15,10 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 	<html>
 
 	<head>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 		<title>Welcome2</title>
 		<style>
 			body {
@@ -136,14 +140,14 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 									$seats = mysqli_query($con, $seat_query);
 									$seats1 = mysqli_fetch_assoc($seats);
 									$tot_seats = (int)$seats1['Seats'];
-
+									$sql_1 = "SELECT Flight_ID,Dep_Time FROM Aircraft";
 									$fid = $row['Flight_ID'];
 									$var = $row['Dep_Time'];
-
 									$booked_seats = "SELECT * FROM Records where Flight_ID='$fid' and Book_Time='$var'";
 									$res = mysqli_query($con, $booked_seats);
 									$numseats = mysqli_num_rows($res);
 									$availSeats = $tot_seats - $numseats;
+
 									echo "<tr>"; ?>
 
 									<td><?php echo $row['Flight_ID']; ?></td>
@@ -167,13 +171,13 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 								</select>
 								<input type="submit" value="Book" name="book" />
 								<?php
+
+
+								mysqli_free_result($result);
+							} else {
+								echo "<h2 class='text-center text-danger'>No planes matching your requirements were found.</h2>";
 							}
-
-							mysqli_free_result($result);
-						} else {
-							echo "No planes matching your requirements were found.";
 						}
-
 						$user = $_SESSION['sess_user'];
 
 						if (isset($_POST['book'])) {
@@ -198,9 +202,12 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 								$fid = $row['Flight_ID'];
 								$var = $row['Dep_Time'];
 								$booked_seats = "SELECT * FROM Records where Flight_ID='$fid' and Dep_Time='$var'";
+								echo "$booked_seats";
 								$res = mysqli_query($con, $booked_seats);
 								$numseats = mysqli_num_rows($res);
 								$availSeats = $tot_seats - $numseats;
+								echo "$tot_seats";
+								echo "$num_seats";
 
 								if ($availSeats == 0) {
 
@@ -211,6 +218,7 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 									</script>
 									// <?php
 									} else {
+										echo "booking";
 										$today = date('Y-m-d H:i:s');
 
 										$sql = "INSERT INTO Records (Flight_ID,Dep_Time,Book_Time,User_Name,Payment_Type) values('$flight_id','$dptime','$today','$user','$payment')";
@@ -235,15 +243,16 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 										mysqli_close($con);
 									}
 								}
-							} else {
-								echo "Insert all the required fields";
+								// }
+								// } else {
+								// 	echo "Insert all the required fields";
+								// }
 							}
 						}
-						// }
 										?><br><br><br>
 					<input type="button" value="Back" onclick="location.href='page1.php';" /><br><br>
 					</center>
-					<p align="right"> Page 2 </p>
+
 				</fieldset>
 			</legend>
 		</form>
