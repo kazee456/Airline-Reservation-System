@@ -78,14 +78,14 @@ if (!isset($_SESSION["sess_user"])) {
                                 <div class="col-lg-5 col-xl-5">
                                     <b>From: </b>
                                     <div class="input-group">
-                                        <input type="text" class="form-control w-50 mx-auto" name="from1" required="required">>
+                                        <input type="text" class="form-control w-50 mx-auto" name="from1" required="required">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-xl-2"></div>
                                 <div class="col-lg-5 col-xl-5">
                                     <b>To:</b>
                                     <div class="input-group">
-                                        <input type="text" class="form-control w-50 mx-auto" name="to1" required="required">>
+                                        <input type="text" class="form-control w-50 mx-auto" name="to1" required="required">
                                     </div>
                                 </div>
                             </div>

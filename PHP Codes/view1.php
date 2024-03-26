@@ -1,8 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION["sess_user"])) {
-    header("location:member.php");
-}
+// session_start();
+// if (!isset($_SESSION["sess_user"])) {
+//     header("location:member.php");
+// }
 ?>
 <!doctype html>
 <html>
@@ -95,7 +95,7 @@ if (!isset($_SESSION["sess_user"])) {
             //$lastInsertID =  mysqli_insert_id($con);
             $usrname = $_SESSION["sess_user"];
 
-            $sql = "select * FROM records WHERE User_Name='$usrname'";
+            $sql = "select * FROM Records WHERE User_Name='$usrname'";
             if ($result = mysqli_query($con, $sql)) {
                 $numrows = mysqli_num_rows($result);
                 if ($numrows > 0) {

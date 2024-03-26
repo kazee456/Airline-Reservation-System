@@ -53,6 +53,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 
 			table {
 				border-collapse: collapse;
+				border-color: #000;
 				width: 80%;
 				color: #000;
 				opacity: 1;
@@ -66,11 +67,11 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 			}
 
 			tr:nth-child(even) {
-				background-color: #f2f2f2
+				background-color: #f2f2f2;
 			}
 
 			tr:nth-child(odd) {
-				background-color: #f2f2f2
+				background-color: #f2f2f2;
 			}
 
 			th {

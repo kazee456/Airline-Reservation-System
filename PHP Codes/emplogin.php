@@ -2,11 +2,15 @@
 <html>
 
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Admin Login</title>
     <style>
         body {
-            background-image: url("crew.jpg");
-            margin-top: 100px;
+            background-image: url("arrow.jpg");
+            margin-top: 4echo0px;
             margin-bottom: 100px;
             margin-right: 150px;
             margin-left: 80px;
@@ -33,7 +37,7 @@
             color: rgb(102, 51, 153);
         }
 
-        fieldset {
+        .custom-card {
             background-color: black;
             color: white;
             opacity: 0.8;
@@ -42,22 +46,19 @@
 </head>
 
 <body>
-    <br>
-    <center>
-        <h1><u> AIRLINE RESERVATION SYSTEM </u></h1>
-    </center> <br>
-    <br />
-    <legend>
-        <fieldset>
-            <center>
+    <h3 class="fs-2 text-center text-bold text-dark">AIRLINE RESERVATION SYSTEM</h3>
+    <div class="card custom-card mt-5">
+        <div class="card-body">
+            <div class="text-center justify-content-center">
                 <br>
                 <h3>Admin Login Form</h3>
                 <form action="" method="POST">
                     <br /><b>Employee name: </b>&nbsp;<input type="text" name="empname"><br />
                     <br /><b>Password: </b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="password" name="emppass"><br /> <br>
-                    <br /><input type="submit" value="Login" name="submit" />
-        </fieldset>
-    </legend>
+                    <button type="submit" class="btn btn-primary" name="submit">Login</button>
+            </div>
+        </div>
+    </div>
     </form>
     <?php
     $con = mysqli_connect("localhost", "root", "@pes1234", "Airline");
@@ -80,15 +81,16 @@
             if ($empname == $dbename && $emppass == $dbpassword) {
                 session_start();
                 $_SESSION['sess_ename'] = $empname;
-
+                echo "<script>alert('You have registered successfully.')</script>";
+                echo "<script>window.open('enter.php','_self')</script>";
                 /* Redirect browser */
-                header("Location: enter.php");
+                // header("Location: enter.php");
             }
         } else {
-            echo "Invalid username or password!";
+            echo "<script>alert('Invalid username or password!')</script>";
         }
     }
-    //<!https://www.youtube.com/watch?v=ylFLVBbB9AM>
+
     ?>
 
 </body>
