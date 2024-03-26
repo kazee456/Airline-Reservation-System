@@ -23,7 +23,7 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 		<style>
 			body {
 				background-image: url("hello.jpg");
-				margin-top: 100px;
+				margin-top: 30px;
 				margin-bottom: 100px;
 				margin-right: 150px;
 				margin-left: 80px;
@@ -31,8 +31,8 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 				background-attachment: fixed;
 				color: #261A15;
 				font-family: 'Yantramanav', sans-serif;
-				;
 				font-size: 100%;
+				overflow: hidden;
 
 			}
 
@@ -57,7 +57,8 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 			table {
 				border-collapse: collapse;
 				width: 80%;
-				color: #00332E;
+				border: 1px solid #343a40;
+				color: #000;
 			}
 
 			th,
@@ -65,6 +66,7 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 				text-align: left;
 				padding: 8px;
 			}
+
 
 			tr:nth-child(even) {
 				background-color: #f2f2f2
@@ -75,31 +77,28 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 			}
 
 			th {
-				background-color: #4CAF50;
+				background-color: #343a40;
 				color: white;
 			}
 
-			fieldset {
+			.custom-card {
 				background-color: black;
 				color: white;
-				opacity: 0.8;
+				opacity: 0.7;
 			}
 		</style>
 
 	</head>
 
 	<body>
-		<center>
-			<h1><u> AIRLINE RESERVATION SYSTEM </u></h1>
-		</center>
-		<br><br>
+		<h3 class="fs-2 text-center text-bold text-dark">AIRLINE RESERVATION SYSTEM</h3>
 		<h2>Flight Details:</h2><br>
 		<form action="" method="POST">
-			<legend>
-				<fieldset>
-					<center>
-						<br><br>
-						<h2>Available Flights: </h2>
+
+			<div class="card custom-card">
+				<div class="card-body">
+					<div class="text-center justify-content-center">
+
 
 						<?php
 						//$aid=$_SESSION['sess_aid'];
@@ -119,8 +118,11 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 						if ($result = mysqli_query($con, $sql)) {
 							$numrows = mysqli_num_rows($result);
 							if ($numrows > 0) {
+								echo "
+						<h2>Available Flights: </h2>";
+
 								echo $numrows . " Plane(s) Available..";
-								echo "<br><br><table border='1'>";
+								echo "<br><br><table class='table table-bordered border-dark'>";
 								echo "<tr>";
 								echo "<th>Plane id</th>";
 								echo "<th>Departure</th>";
@@ -161,15 +163,38 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 								<?php
 								}
 								echo "</table><br><br>";
-								?><b> Flight id: &ensp; &ensp; </b><input type="text" name="flight_id"> &ensp; &ensp;
-								<b> Dep_Time: &ensp; &ensp; </b><input type="text" name="dptime"> &ensp; &ensp;
-								<select name="Booking_Method">
-									<option value="Paytm">Paytm</option>
-									<option value="Card">Credit Card</option>
-									<option value="UPI">UPI</option>
-									<option value="Wallet">Wallet</option>
-								</select>
-								<input type="submit" value="Book" name="book" />
+
+								?>
+								<div class="row">
+
+									<div class="col form-inline">
+										<b>Flight id:</b>
+										<input type="text" name="flight_id" placeholder="Flight Id">
+									</div>
+									<!-- <div class="col">
+										<input type="text" name="flight_id" placeholder="Flight Id">
+									</div> -->
+
+									<div class="col form-inline">
+										<b>Dep_Time:</b>
+										<input type="text" name="dptime" placeholder="Depature Time">
+									</div>
+									<!-- <div class="col">
+										<input type="text" name="dptime" placeholder="Depature Time">
+									</div> -->
+									<div class="col form-inline">
+										<b>Payment Mode: </b>
+										<select name="Booking_Method" class="form-select p-1">
+											<option value="Paytm">Paytm</option>
+											<option value="Card">Credit Card</option>
+											<option value="UPI">UPI</option>
+											<option value="Wallet">Wallet</option>
+										</select>
+									</div>
+									<div class="col form-inline">
+										<input type="submit" value="Book" name="book" class="btn btn-primary">
+									</div>
+								</div>
 								<?php
 
 
@@ -249,12 +274,12 @@ if (!isset($_SESSION['sess_from']) && !isset($_SESSION['sess_user']) && !isset($
 								// }
 							}
 						}
-										?><br><br><br>
-					<input type="button" value="Back" onclick="location.href='page1.php';" /><br><br>
-					</center>
-
-				</fieldset>
-			</legend>
+										?><br>
+					</table>
+					<button type="button" class="btn btn-secondary" onclick="location.href='page1.php';">Back</button><br><br>
+					</div>
+				</div>
+			</div>
 		</form>
 	</body>
 

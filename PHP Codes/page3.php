@@ -11,16 +11,16 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 	<html>
 
 	<head>
-		<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 		<title>Welcome3</title>
 		<style>
 			body {
 				background-image: url("hello.jpg");
-				margin-top: 100px;
+				margin-top: 40px;
 				margin-bottom: 100px;
 				margin-right: 150px;
 				margin-left: 80px;
@@ -28,7 +28,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 				background-attachment: fixed;
 				color: #261A15;
 				font-family: 'Yantramanav', sans-serif;
-				;
+				overflow: hidden;
 				font-size: 100%;
 
 			}
@@ -45,7 +45,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 		</style>
 		<link rel="stylesheet" type="text/css" href="page.css">
 		<style>
-			fieldset {
+			.custom-card {
 				background-color: black;
 				color: white;
 				opacity: 0.8;
@@ -54,7 +54,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 			table {
 				border-collapse: collapse;
 				width: 80%;
-				color: #00332E;
+				color: #000;
 				opacity: 1;
 
 			}
@@ -74,7 +74,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 			}
 
 			th {
-				background-color: #4CAF50;
+				background-color: #343a40;
 				color: white;
 			}
 		</style>
@@ -82,17 +82,12 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 	</head>
 
 	<body>
-		<center>
-			<h1> AIRLINE RESERVATION SYSTEM </h1>
-		</center>
-
-		<!-- <div class="right"><button class="button">
-				<a href="logout1.php" style="color:black">Logout</a></button>
-		</div><br><br><br> -->
+		<h3 class="fs-2 text-center text-bold text-dark">AIRLINE RESERVATION SYSTEM</h3>
 		<form action="" method="POST">
-			<legend>
-				<fieldset>
-					<center>
+
+			<div class="card custom-card mt-5">
+				<div class="card-body">
+					<div class="text-center justify-content-center">
 						<br>
 						<b>
 							<p class="text-success">Successfully Booked.</p>
@@ -107,7 +102,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 						if ($result = mysqli_query($con, $sql)) {
 							$numrows = mysqli_num_rows($result);
 							if ($numrows > 0) {
-								echo "<table border='1'>";
+								echo "<table class='table table-bordered border-dark'>";
 								echo "<tr>";
 								echo "<th>Username</th>";
 								echo "<th>Booking id</th>";
@@ -146,8 +141,7 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 						?>
 						<div class="mb-3">
 							<input type="submit" value="Cancel Flight" class="bg-info py-1 px-2 mb-0" name="cancel" onclick="return confirm('Are you sure you want to cancel the flight?');" />
-							<!-- <input type="submit" value="Receipt" class="bg-info py-1 px-2 mb-0" name="receipt" /> -->
-							<button type="button" class="btn btn-info"><a href="receipt.php" style="color:black">Receipt</a></button>
+							<button type="button" class="btn btn-info py-1"><a href="receipt.php" style="color:black">Receipt</a></button>
 						</div>
 					<?php
 					if (isset($_POST["cancel"])) {
@@ -166,14 +160,14 @@ if (!isset($_SESSION['sess_user']) && !isset($_SESSION['sess_aid']) && !isset($_
 					}
 				}
 					?>
-
-					</center>
-				</fieldset>
-			</legend>
+					</div>
+				</div>
+			</div>
 		</form>
-		<button type="button" class="btn btn-info"><a href="logout1.php" style="color:black">Logout</a></button>
-		<button type="button" class="btn btn-info"><a href="page2.php" style="color:black">Back</a></button>
-
+		<div class="d-flex justify-content-between">
+			<button type="button" class="btn btn-info mt-4"><a href="page2.php" style="color:black">Back</a></button>
+			<button type="button" class="btn btn-danger mt-4"><a href="logout1.php" style="color:black">Logout</a></button>
+		</div>
 	</body>
 
 	</html>
